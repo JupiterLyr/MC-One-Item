@@ -1,6 +1,6 @@
 # One-Item
 
-一款 Minecraft Java 版数据包，用带有自定义 NBT 标记的屏障填充玩家背包中的受保护槽位。内部命名空间：`slotlock`
+一款 Minecraft Java 版数据包和材质包组合，用带有自定义 NBT 标记的屏障填充玩家背包中的受保护槽位，并将这些屏障显示为自定义图片。内部命名空间：`slotlock`
 
 ## 兼容版本
 
@@ -8,8 +8,7 @@
 - 推荐版本：Java 版 `1.19.x`
 - 当前命令实现使用 `1.19.x` 支持的 `/item replace` 和旧版物品 NBT 语法，**不包含** Java 版 `1.20.5+` 的物品组件语法
 
-> 不同 Minecraft 版本使用不同的 `pack_format`。当前 `pack.mcmeta` 使用 `10`，以 1.19.x 为主要基线。
-> 在其他可兼容版本中，如果游戏提示数据包版本不匹配，可以强制装载；若希望去除警告，只需调整 `pack.mcmeta` 中的 `pack_format`，函数文件不需要改动。
+> 数据包和材质包分别拥有自己的 `pack.mcmeta`，因为两者的 `pack_format` 不同。当前数据包以 `10`、材质包以 `12` 作为 1.19.x 基线。在其他可兼容版本中，如果游戏提示版本不匹配，可以强制装载；若希望去除警告，需要调整对应子目录中的 `pack.mcmeta`，函数和模型文件不需要改动。
 
 ## 槽位规则
 
@@ -31,19 +30,23 @@
 
 ## 安装
 
-本项目根目录本身就是数据包根目录，必须直接包含 `pack.mcmeta` 和 `data`：
+本项目采用数据包和材质包分离结构：
 
 ```text
-One-Item/
-├─ pack.mcmeta
-└─ data/
+MC-OneItem/
+├─ one-item-datapack/
+│  ├─ pack.mcmeta
+│  └─ data/
+└─ one-item-resourcepack/
+   ├─ pack.mcmeta
+   └─ assets/
 ```
 
-可以直接将该项目完整放置在 `datapacks` 文件夹中，也可以将 `pack.mcmeta` 和 `data` 压缩为 `.zip`。如果使用 ZIP，**不能多包一层目录，否则 Minecraft 无法识别**！
+数据包和材质包需要分别安装，不能把项目根目录直接放入游戏目录。
 
 ### 具体步骤
 
-1. 放入数据包文件夹
+1. 安装数据包
 
 - 单人游戏放入：
 
@@ -57,13 +60,25 @@ One-Item/
 <服务器目录>\<level-name>\datapacks\
 ```
 
-2. 放入后进入世界，执行：
+将 `one-item-datapack` 文件夹放入对应世界的 `datapacks` 目录。也可以将该文件夹内的 `pack.mcmeta` 和 `data` 压缩成 ZIP；ZIP 第一层必须直接包含这两个项目。
+
+2. 安装材质包
+
+将 `one-item-resourcepack` 文件夹放入：
+
+```text
+.minecraft\resourcepacks\
+```
+
+进入游戏后，在“选项 → 资源包”中启用 One-Item Resource Pack。也可以将 `one-item-resourcepack` 压缩成 ZIP，ZIP 第一层必须直接包含 `pack.mcmeta` 和 `assets`。
+
+3. 进入世界并加载数据包，执行：
 
 ```mcfunction
 /reload
 ```
 
-3. 可以使用以下命令确认数据包已启用：
+4. 可以使用以下命令确认数据包已启用：
 
 ```mcfunction
 /datapack list enabled
@@ -73,6 +88,12 @@ One-Item/
 
 - 数据包会在玩家首次被识别时在聊天框显示作者、兼容版本、规则和注意事项，重新进入同一世界时如需再次查看，可以执行 `/reload`，或重新安装到新的世界存档中。
 
-## 关于该项目的说明
+## 材质包占位图
 
-当前项目没有资源包文件。若之后加入材质包，资源包应单独放入 `resourcepacks` 目录，不能把 `assets` 目录直接放进数据包的 `data` 目录。
+数据包生成的标记屏障带有 `CustomModelData:1`。材质包通过 `assets/minecraft/models/item/barrier.json` 的模型覆盖，将它替换为：
+
+```text
+one-item-resourcepack/assets/slotlock/textures/item/blocked_barrier.png
+```
+
+当前 PNG 是洋红色纯色占位图，后续可以直接替换该文件。建议保持 PNG 为 `16×16`，并保留文件名和路径不变。材质包不会改变槽位的实际点击区域，只改变标记屏障的显示效果。
