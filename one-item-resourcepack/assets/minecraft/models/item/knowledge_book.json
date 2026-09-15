@@ -1,14 +1,14 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "minecraft:item/nether_star"
+    "layer0": "minecraft:item/knowledge_book"
   },
   "overrides": [
     {
       "predicate": {
         "custom_model_data": 1
       },
-      "model": "slotlock:item/nether_star"
+      "model": "slotlock:item/knowledge_book"
     }
   ]
 }

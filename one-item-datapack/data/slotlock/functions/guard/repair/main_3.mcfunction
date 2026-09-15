@@ -1,3 +1,3 @@
 execute if data entity @s Inventory[{Slot:12b}] run data modify storage slotlock:recovery item set from entity @s Inventory[{Slot:12b}]
 execute if data entity @s Inventory[{Slot:12b}] run function slotlock:guard/recover
-item replace entity @s inventory.3 with minecraft:nether_star{CustomModelData:1,slotlock_blocked:1b,slotlock_slot:12,display:{Name:'{"text":" ","italic":false}'}}
+item replace entity @s inventory.3 with minecraft:knowledge_book{CustomModelData:1,slotlock_blocked:1b,slotlock_slot:12,display:{Name:'{"text":" ","italic":false}'}}
