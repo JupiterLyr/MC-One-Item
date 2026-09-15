@@ -12,6 +12,19 @@
 - 推荐版本：Java 版 `1.19.x`
 - 当前命令实现使用 `1.19.x` 支持的 `/item replace` 和旧版物品 NBT 语法，版本 `1.17.x` 部分表现可能稍差，**不兼容** Java 版 `1.20.5+` 和 `1.16.x` 及以下版本
 
+| Minecraft 版本 | 资源包\* | 数据包\* | 发布版本 |
+| :---: | :---: | :---: | :---: |
+| 1.18、1.18.1 | 8 | 8 | v1.18.1 |
+| 1.18.2 | 8 | 9 | v1.18.2 |
+| 1.19.0 ~ 1.19.2 | 9 | 10 | v1.19.2 |
+| 1.19.3 | 12 | 12 | v1.19.3 |
+| 1.19.4 | 13 | 13 | v1.19.4 |
+| 1.20、1.20.1 | 15 | 15 | v1.20.1 |
+| 1.20.2 | 18 | 18 | v1.20.2 |
+| 1.20.3、1.20.4 | 22 | 26 | v1.20.4 |
+
+\*: 特指 `pack.mcmeta` 中的 `pack_format`
+
 > 数据包和材质包的 `pack_format` 均为 `10`，将 `1.19.x` 作为基线版本。
 > 在其他可兼容版本中，如果游戏提示版本不匹配，可以强制装载；若希望去除警告，需要手动调整对应子目录中的 `pack.mcmeta`，函数和模型文件不需要改动。
 
@@ -102,6 +115,19 @@ A combination of a data pack and a texture pack for Minecraft Java Edition that 
 - Recommended Version: Java Edition `1.19.x`
 - The current command implementation uses the `/item replace` command and legacy item NBT syntax supported by `1.19.x`. Performance may be slightly suboptimal on `1.17.x`; **incompatible** with Java Edition `1.20.5+` and `1.16.x` and earlier versions
 
+| Minecraft Version | Resource Pack \* | Data Pack \* | Release Version |
+| :---: | :---: | :---: | :---: |
+| 1.18、1.18.1 | 8 | 8 | v1.18.1 |
+| 1.18.2 | 8 | 9 | v1.18.2 |
+| 1.19.0 ~ 1.19.2 | 9 | 10 | v1.19.2 |
+| 1.19.3 | 12 | 12 | v1.19.3 |
+| 1.19.4 | 13 | 13 | v1.19.4 |
+| 1.20、1.20.1 | 15 | 15 | v1.20.1 |
+| 1.20.2 | 18 | 18 | v1.20.2 |
+| 1.20.3、1.20.4 | 22 | 26 | v1.20.4 |
+
+\*: Especially the `pack_format` in `pack.mcmeta`.
+
 > The `pack_format` for both data packs and texture packs is set to `10`, with `1.19.x` as the baseline version.
 > In other compatible versions, if the game prompts a version mismatch, you can force the pack to load; to remove the warning, you’ll need to manually adjust the `pack.mcmeta` file in the corresponding subdirectory. Function and model files do not need to be modified.
 
@@ -175,6 +201,12 @@ You can use the following command to confirm whether the resource pack is enable
 
 - When a player is detected for the first time, the author, compatible versions, rules, and notes will be displayed in the chat window. To view this information again, execute `/reload` or reinstall the resource pack into a new world save.
 - While playing, **try to avoid accidentally dropping placeholder items as much as possible, and avoid placing items in restricted locations**. Although every precaution has been taken, we cannot guarantee 100% error-free operation.
+
+---
+
+## Python Script
+
+Running the Python script will automatically package it into multiple versions in bulk, which will then be saved in the Release folder.
 
 ---
 

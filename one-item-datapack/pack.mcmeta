@@ -1,6 +1,6 @@
 {
   "pack": {
     "pack_format": 10,
-    "description": "§aOne-Item v0.1.0§r - 1.18.x ~ 1.20.4，推荐使用 1.19.x"
+    "description": "§aOne-Item§r - v{version}"
   }
 }
